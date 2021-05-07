@@ -8,6 +8,7 @@ const progressContainer = document.querySelector('.progress-container');
 const title = document.querySelector('#title');
 const cover = document.querySelector('#cover');
 const volume = document.querySelector('#volume');
+const mixBtn = document.querySelector('#mix');
 
 // Song titles
 const songs = ['belki', 'yalan', 'bubicim'];
@@ -125,3 +126,15 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
 
 volume.addEventListener('click', mute);
+mixBtn.addEventListener('click', mixSong);
+
+function mixSong() {
+    let randomNumber = Math.floor(Math.random() * songs.length);
+    if (randomNumber === songIndex) {
+        randomNumber = Math.floor(Math.random() * songs.length);
+    } else {
+        songIndex = randomNumber;
+        loadSong(songs[songIndex]);
+        playSong();
+    }
+}
