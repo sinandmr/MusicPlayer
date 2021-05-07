@@ -130,9 +130,10 @@ mixBtn.addEventListener('click', mixSong);
 
 function mixSong() {
     let randomNumber = Math.floor(Math.random() * songs.length);
-    if (randomNumber === songIndex) {
+    while (randomNumber === songIndex) {
         randomNumber = Math.floor(Math.random() * songs.length);
-    } else {
+    }
+    if (randomNumber !== songIndex) {
         songIndex = randomNumber;
         loadSong(songs[songIndex]);
         playSong();
