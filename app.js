@@ -58,25 +58,26 @@ function nextSong() {
     loadSong(songs[songIndex]);
     playSong();
 }
+// START second to minute and second
+function secondsToHms(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor((d % 3600) / 60);
+    var s = Math.floor((d % 3600) % 60);
+
+    var hDisplay = h > 0 ? h + (h == 1 ? ' saat, ' : ' saat, ') : '';
+    var mDisplay = m > 0 ? m + (m == 1 ? '. dakika, ' : '. dakika, ') : '';
+    var sDisplay = s > 0 ? s + (s == 1 ? '. saniye' : '. saniye') : '';
+    return hDisplay + mDisplay + sDisplay;
+}
+// FINISH second to minute and second
 
 function updateProgress(e) {
     const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
 
-    // Bulunduğu dakikayı belirten olay
-    const dkCinsindenSure = (duration / 60).toFixed(2);
-    let anlikSaniye = Math.floor(currentTime);
-    if (anlikSaniye < 10) {
-        anlikSaniye = '0.0' + anlikSaniye;
-    } else if (anlikSaniye > 10 && anlikSaniye < 60) {
-        anlikSaniye = '0.' + anlikSaniye;
-    }
-    if (anlikSaniye >= 60) {
-        anlikSaniye = (anlikSaniye / 60).toFixed(2);
-    }
-    title.innerText = `${songs[songIndex]} - ${anlikSaniye}/${dkCinsindenSure}`;
-    // Bitiş
+    title.innerText = `${songs[songIndex]} - ${secondsToHms(currentTime)}`;
 }
 
 function setProgress(e) {
