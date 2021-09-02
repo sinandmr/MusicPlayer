@@ -11,4 +11,4 @@ Developed using DOM elements and JavaScript.
 
 ## Live
 
-- [Music Player](https://sinandmr.github.io/MusicPlayer/)
+- [Music Player](https://sinandmr.github.io/musicPlayer/)
